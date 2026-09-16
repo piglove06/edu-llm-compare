@@ -354,6 +354,7 @@ cd "C:\Users\piglo\OneDrive\Desktop\KANT LLM\페이지 PDF\98. 프로젝트\Proj
 ```powershell
 git status
 git add README.md
+git add .
 git commit -m "docs: README init"
 git push origin main
 ```
