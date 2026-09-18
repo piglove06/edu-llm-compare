@@ -453,6 +453,18 @@ git add README.md
 git add .
 git commit -m "docs: README init"
 git push origin main
+
+git add 파일명_입력 && git commit -m "커밋메시지_입력"
+
+Commit Conventional
+  feat : 새 기능 추가, 의도대로 잘 돌아가지만 요구사항이 바뀐 것
+  fix : 버그 수정, 의도한 대로 안 돌아가서 고친 것
+  docs : 문서만 수정
+  refactor : 동작은 그대로, 코드 구조만 개선
+  chore : 잡다한거
+
+
+
 ```
 
 ### 3. 최초 커밋 시 (계정 설정)
@@ -485,3 +497,6 @@ https://github.com/mlcommons/ailuminate/blob/main/airr_official_1.0_demo_fr_fr_p
 8. 학습방식(SFT / RLHF / DPO)
 9. FFN관련(MoE)
 10. CUDA를 효율적으로 사용 or 
+
+
+test
