@@ -4,6 +4,13 @@ Private LLM 과정 실습 프로젝트 — 로컬 LLM 2개(granite-4.1-3b, exaon
 
 ---
 
+# 최종 발표자료 산출물
+1. LLM프로젝트_오픈소스활용_이정원_ver1.0.pptx
+- p1 ~ 13는 prezi로 만들었으니 해당url 참고(https://prezi.com/craft/room/3gYh2B6H4HR5Vh85qAKxuP?referral_token=5HXX4alnB3FN)
+- 14 ~ 20은 해당ppt 자료참고.
+
+---
+
 ## STEP 0. 모델 설치 및 실행
 
 ### 0.1 exaone3.5:7.8b
@@ -386,33 +393,11 @@ log_04_document_qa.jsonl file 참고
 문제3번의경우 모델의 파라메터를 찾는 간단한 문제라 판단하였는데 로컬모델 둘 다 틀렸으며,
 문제3번 질문 프롬프트에 '전체'라는 단어와,  md파일에 plus라는 단어가 LLM이 판단할 때 오류를 낸 것으로 추측(모티스 모델로 추가테스트시 Log로 확인).
 
----
 
+### 5.4.8 motif 프롬프트 튜닝 후 결과분석
+motif의 경우 채점결과, 결과요약 및 비교는 생략
+사용결과 luna와 거의 비슷할정도의 성능을 보여
 
-
-## 프로젝트 주요 산출물
-
-1. GitHub Repository
-2. Model Comparison Table
-3. Model Test / Benchmark 결과
-4. Local LLM vs Cloud API 비교
-5. 최종 Model Selection Report
-
----
-
-## 프로젝트 요구사항 충족도 평가표
-
-| 요구사항 | 수행할 작업 (STEP) | 완료 기준/확인할 증빙 |
-|---|---|---|
-| 1. 문제/요구사항 정의 | STEP 1~2 | 사용 사례를 정의하고, 필수 통과 조건과 선호 우선순위를 실험 전에 정합니다. 사용자/태스크/제약조건과 선정 기준이 정리되어 있고, 조건별 확인 방법과 우선순위를 설명할 수 있습니다. |
-| 2. 후보 모델 조사 | STEP 3 | 서로 다른 로컬 후보 2개의 특성과 실행 가능 조건을 조사합니다. Model Card/License 출처, 모델 크기/Context/양자화, 실제 모델 태그/식별값과 후보 선정 이유가 기록되어 있습니다. |
-| 3. 실행 환경/기록 확인 | STEP 4 | 두 후보를 Python으로 호출하고 결과 한 건을 파일에 저장한 뒤 다시 확인합니다. 모델별 기본 응답, Python/Ollama/주요 패키지/장비/설정 정보와 저장된 원본 기록을 확인할 수 있습니다. |
-| 4. 평가 질문/기준 확정 | STEP 5 | 질문 10개와 기대 결과/품질 채점 기준을 정하고, Cloud용 5문항을 미리 선정합니다. 질문 ID/입력 자료/기대 결과 또는 확인 항목이 있으며, 정상/경계/정보 부족 사례와 동일 입력/설정 적용 기준이 정리되어 있습니다. |
-| 5. 로컬 비교 실험 | STEP 6 | 로컬 모델 2개 × 질문 10개 × 각 2회를 실행하고, 모델당 워밍업 1회와 구분합니다. 본 실험 40회의 응답/설정/성공/오류 기록과 전체 응답 시간/로딩 시간/출력 토큰 수/생성 속도/VRAM 기록을 확인할 수 있습니다. |
-| 6. 품질 평가/해석 | STEP 5~6 | 원본 응답을 동일 기준으로 채점하고 점수 근거와 대표 성공/실패 사례를 분석합니다. 점수의 근거가 응답 부분과 연결되고, 평균 및 집계 응답 수를 원본 기록에서 확인할 수 있습니다. |
-| 7. Local–Cloud 비교 | STEP 7 | Cloud 모델 1개에 공통 질문 5개를 각 1회 적용하고 로컬의 동일 문항 결과와 비교합니다. Cloud 응답/상태/시간/토큰 사용량/비용과 품질 평가가 있습니다. |
-| 8. 최종 모델 선정/발표 | STEP 8 | 두 로컬 후보의 필수 조건 충족 여부를 확인하고 우선순위에 따라 후보 1개를 선정합니다. 선택/탈락 이유가 요구사항과 실험 근거에 연결됩니다. |
-| 9. 제출/재실행 확인 | 산출물 전체 | 저장소 하나에 코드/환경/질문/원본 기록/비교표/선정 근거를 모읍니다. README에서 실행 방법과 자료 위치를 확인할 수 있습니다. |
 
 ---
 
@@ -428,26 +413,64 @@ log_04_document_qa.jsonl file 참고
 2. RAG를 연동하였어도, 할루시네이션이 생각보다 심함.
 3. 다만 로컬모델의 기능을 최대한 끌어올리는 LLM Ops공부에는 도움이 많이 될 것으로 생각됨.
 
+추후 비슷한 프로젝트 진행시 고려해야 할 상황
+1. 출력결과를 jsonl방식이 아닌 log방식으로 변경 + 모델별 출력결과를 조회시 더 찾기 좋게 변경예정 (Ex. response에 모델명 + Qn을 추가하여 특정문제를 한번에 조회하여 분석하기 편하게)
+2. 로컬모델들의 성능을 최대한 끌어올리기 위한 최적화작업(펑션콜, RAG 세팅, 순서를 정하거나 interlock추가)
+
+프로젝트 과정 특이사항
+1. 다양한 모델중 어떤 모델을 선택할지
+- 우선순위 : 한국어 공식지원, 개인취향이 많이 반영된 모델 선택
+
+2. 다양한 주제중에 어떤 주제를 정할지
+- Local LLM이 유리한 주제로 진행하였지만 해당 장점을 크게 찾지못함.
+- 사용자가 나라면 훨씬 도움될거라 생각되어 주제변경
+
+3. Local LLM을 써야 할 이유 - 성능이 부족하지만 보안 및 비용 이외에 장점이 있을까?
+**작은 모델을 여러 방면으로 튜닝하면서 공부**
+  큰 모델에서는 최적화되어 사용하지 않는 기능일 수 있지만, 현재 교육과정을 하고 있으니 최적의 선택
+**특정 상황에 맞는 이미 튜닝된 모델 사용 가능**
+**클라우드의 경우 신규 모델 출시 시 구형 모델은 단종하는 케이스가 있음**
+**실제 해당 기능을 운영 시 마주치게 될 문제점** (아래에 정리)
+
+4. 회사에서 자체LLM을 사용한다는 가정하에 고려해야할 사항
+**사용자 비율, 사용자가 동시에 몰릴 때 처리방법**
+**필요한 하드웨어 종류 및 비용**
+**엔비디아 그래픽카드를 구하여 LLM Ops vs 맥미니 여러대로 LLM Ops**
+**보안관련된 항목, 권한, 그룹 등 추가작업**
+**RAG, 튜닝, 툴콜링, 랭그래프등 구형 & 소형 모델일수록 순서와 통제를 강하게 할 필요가 있음.**
 
 
-## 참고 URL
+## 기타 : 참고 URL
 
-1. [edu-llm-compare (프로젝트 저장소)](https://github.com/piglove06/edu-llm-compare)
+1. 현재 프로젝트 url
+https://github.com/piglove06/edu-llm-compare
 
+2. 프롬프트 인젝션 자료 url
+https://github.com/mlcommons/ailuminate/blob/main/airr_official_1.0_demo_fr_fr_prompt_set_release.csv 
 
+3. hf - Edge0(맥 기준 ssd 사용기술)
+https://huggingface.co/Edge0/Edge0-35B-A3B-preview
+
+4. hf
+https://huggingface.co/
+
+5. 올라마 모델다운로드
+https://ollama.com/search
 ---
 
-## 기타 (실행 명령어 모음)
+## 기타 : git commit 시 사용한 커맨드명령어
 
-### 1. PowerShell - 프로젝트 폴더 이동
+### 1. GitHub - 소스코드 업데이트
 
 ```powershell
+git 최초 커밋 시 필요(계정 설정)
+git config --global user.name "piglove06"
+git config --global user.email "piglove06@hanmail.net"
+
+현재 프로젝트 이동 커맨드
 cd "C:\Users\piglo\OneDrive\Desktop\KANT LLM\페이지 PDF\98. 프로젝트\Project1"
-```
 
-### 2. GitHub - 소스코드 업데이트
-
-```powershell
+power shell 깃관련 커맨드
 git status
 git add README.md
 git add .
@@ -463,40 +486,4 @@ Commit Conventional
   refactor : 동작은 그대로, 코드 구조만 개선
   chore : 잡다한거
 
-
-
 ```
-
-### 3. 최초 커밋 시 (계정 설정)
-
-```powershell
-git config --global user.name "piglove06"
-git config --global user.email "piglove06@hanmail.net"
-```
-
-### 4. 프롬프트 인젝션 자료 url
-https://github.com/mlcommons/ailuminate/blob/main/airr_official_1.0_demo_fr_fr_prompt_set_release.csv 
-
-
-### 5. 회사에서 자체LLM을 사용한다는 가정하에 고려해야할 사항
-
-1. 사용자 비율, 사용자가 동시에 몰릴 때 처리방법
-2. 하드웨어비용
-3. 엔비디아 그래픽카드를 구하여 LLMOps vs 맥미니 여러대로 LLM Ops
-4. 보안관련된 항목, 권한 등 추가작업
-5. RAG, 튜닝, 툴콜링, 랭그래프등 구형 & 소형 모델일수록 순서와 통제를 강하게 할 필요가 있음.
-
-### 6. 딥러닝기술중 수업에서 배운 기술과 최신형 모델들이 사용하는 기술 비교
-1. Normalizer(RMSNorm)
-2. Attention(GQA, MLA)
-3. 트랜스포머
-4. Embedding(RoPE)
-5. 활성함수(SwiGLU)
-6. Weight수정방식(AdamW)
-7. 양자화(FP32 / BF16)
-8. 학습방식(SFT / RLHF / DPO)
-9. FFN관련(MoE)
-10. CUDA를 효율적으로 사용 or 
-
-
-test
